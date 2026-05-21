@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechZone - Главная</title>
+    <style>
+        body { 
+            font-family: sans-serif; 
+            margin: 0; 
+            background: #f4f7f6; 
+            display: flex; 
+            flex-direction: column; 
+            min-height: 100vh; 
+            color: #333; 
+        }
+
+        .header { background: #001f3f; color: white; padding: 20px; text-align: center; }
+        .header__logo { font-size: 24px; font-weight: bold; margin-bottom: 10px; }
+        .header__link { color: white; text-decoration: none; margin: 0 10px; transition: color 0.3s; }
+        .header__link:hover { color: #00d4ff; }
+        .header__link--active { color: #00d4ff; font-weight: bold; }
+
+        .main-content { 
+            padding: 40px 20px; 
+            max-width: 1000px; 
+            margin: 0 auto; 
+            flex: 1; 
+            width: 100%; 
+            box-sizing: border-box; 
+        }
+
+        .promo-block { 
+            background: white; 
+            padding: 50px 30px; 
+            border-radius: 10px; 
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1); 
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .promo-block__title { color: #001f3f; font-size: 32px; margin-top: 0; margin-bottom: 15px; }
+        .promo-block__text { color: #666; font-size: 18px; margin-bottom: 30px; line-height: 1.6; }
+        .promo-block__btn { 
+            display: inline-block; 
+            background: #007bff; 
+            color: white; 
+            text-decoration: none; 
+            padding: 12px 30px; 
+            border-radius: 5px; 
+            font-weight: bold; 
+            transition: background 0.3s, transform 0.2s; 
+        }
+        .promo-block__btn:hover { background: #0056b3; transform: scale(1.05); }
+
+        .features-grid { 
+            display: flex; 
+            gap: 20px; 
+            justify-content: space-between; 
+        }
+        .feature-card { 
+            background: white; 
+            padding: 25px 20px; 
+            border-radius: 10px; 
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1); 
+            flex: 1; 
+            text-align: center;
+            box-sizing: border-box;
+        }
+        .feature-card__title { color: #001f3f; font-size: 20px; margin-top: 0; margin-bottom: 10px; }
+        .feature-card__text { color: #666; font-size: 14px; line-height: 1.5; }
+
+.footer {
+    background-color: #2c2c2c;
+    color: white;
+    padding: 30px 0 20px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+.footer__title {
+    display: block;
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.footer__text {
+    margin: 10px 0;
+    font-size: 18px;
+}
+
+.footer__link {
+    color: #00d4ff;
+    text-decoration: none;
+}
+
+.footer__link:hover {
+    text-decoration: underline;
+}
+
+.footer__bottom {
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid #444;
+}
+
+.footer__copy {
+    color: #888;
+    font-size: 14px;
+}
+        @media (max-width: 768px) {
+            .features-grid { flex-direction: column; }
+            .promo-block__title { font-size: 26px; }
+            .header__nav { display: flex; flex-direction: column; gap: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="header__logo">TechZone</div>
+        <nav class="header__nav">
+            <a href="TechZone.html" class="header__link header__link--active">Главная</a>
+            <a href="Catalog.html" class="header__link">Каталог</a>
+            <a href="info.html" class="header__link">Оплата и доставка</a>
+            <a href="feedback.html" class="header__link">Обратная связь</a>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        
+        <section class="promo-block" style="background-image: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), url(https://procompsoft.ru/wp-content/uploads/2015/03/kompyuternaya-texnika-prodazha_01.jpg); background-size: cover; background-position: center;">
+            <h1 class="promo-block__title">Добро пожаловать в TechZone!</h1>
+            <p class="promo-block__text">
+                Мы предлагаем широкий ассортимент современной электроники, игровых консолей, 
+                высокоскоростной комплектующей памяти и топовой периферии для вашего ПК по отличным ценам.
+            </p>
+            <a href="Catalog.html" class="promo-block__btn">Перейти в каталог →</a>
+        </section>
+
+        <section class="features-grid">
+            <div class="feature-card">
+                <h3 class="feature-card__title">🚀 Быстрая доставка</h3>
+                <p class="feature-card__text">Доставляем заказы по Москве за 1 день, а также отправляем по всей России.</p>
+            </div>
+            
+            <div class="feature-card">
+                <h3 class="feature-card__title">🛡️ Гарантия качества</h3>
+                <p class="feature-card__text">Вся продукция сертифицирована и имеет официальную гарантию производителя.</p>
+            </div>
+            
+            <div class="feature-card">
+                <h3 class="feature-card__title">💳 Удобная оплата</h3>
+                <p class="feature-card__text">Принимаем карты Visa, MasterCard, МИР, а также электронные кошельки.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="footer__content">
+            <b class="footer__title">Контакты:</b>
+            <p class="footer__text">Телефон: <a href="tel:+79990000000" class="footer__link">+7 (999) 000-00-00</a></p>
+            <p class="footer__text">Почта: <a href="mailto:pochta@gmail.com" class="footer__link">pochta@gmail.com</a></p>
+        </div>
+        <div class="footer__bottom">
+            <p class="footer__copy">© 2026 TechZone. Все права защищены.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

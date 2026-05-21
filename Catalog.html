@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechZone - Каталог</title>
+<style>
+
+body { font-family: sans-serif; margin: 0; background: #f4f7f6; display: flex; flex-direction: column; min-height: 100vh; }
+
+.header { background: #001f3f; color: white; padding: 20px; text-align: center; }
+.header__logo { font-size: 24px; font-weight: bold; margin-bottom: 10px; }
+.header__link { color: white; text-decoration: none; margin: 0 10px; transition: color 0.3s; }
+.header__link:hover { color: #00d4ff; }
+.header__link--active { color: #00d4ff; font-weight: bold; }
+
+.main-content { padding: 20px; max-width: 1200px; margin: 0 auto; flex: 1; width: 100%; box-sizing: border-box; }
+.main-content__title { text-align: center; color: #001f3f; margin-bottom: 30px; }
+
+
+.layout-wrapper {
+    display: flex;
+    gap: 25px;
+    align-items: flex-start;
+}
+
+.sidebar {
+    flex: 0 0 250px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    animation: fadeInLeft 0.6s ease-out;
+}
+
+.filter-form h3 { margin-top: 0; color: #001f3f; border-bottom: 2px solid #f0f0f0; padding-bottom: 10px; }
+.filter-group { margin-bottom: 20px; display: flex; flex-direction: column; gap: 8px; }
+.filter-group > label.group-title { font-size: 15px; font-weight: bold; margin-bottom: 5px; color: #333; }
+.filter-group label { font-size: 14px; cursor: pointer; display: flex; align-items: center; gap: 8px;}
+
+.catalog-area { flex: 1; }
+.catalog-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: flex-start;
+}
+
+.product-card {
+    background: white;
+    border-radius: 10px;
+    padding: 15px;
+    width: calc(33.333% - 20px);
+    box-sizing: border-box;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+}
+
+.product-card__image-wrapper { height: 180px; display: flex; justify-content: center; align-items: center; }
+.product-card__img { max-width: 100%; max-height: 100%; object-fit: contain; }
+.product-card__name { font-size: 18px; margin: 15px 0 5px; }
+.product-card__name a { color: #333; text-decoration: none; transition: color 0.3s; }
+.product-card__name a:hover { color: #007bff; }
+.product-card__description { color: #666; font-size: 14px; flex: 1; margin-bottom: 15px; }
+.product-card__price { font-size: 20px; font-weight: bold; color: #28a745; margin-bottom: 10px; }
+.product-card__button { background: #007bff; color: white; border: none; padding: 10px; cursor: pointer; border-radius: 5px; transition: background 0.3s, transform 0.2s; font-weight: bold;}
+.product-card__button:hover { background: #0056b3; transform: scale(1.05); }
+
+.feedback-section {
+    margin-top: 50px;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    animation: fadeInUp 0.8s ease-out;
+}
+.feedback-section h2 { margin-top: 0; text-align: center; color: #001f3f; margin-bottom: 20px; }
+.form-group { margin-bottom: 15px; }
+.form-group label { display: block; margin-bottom: 5px; font-weight: bold; color: #444; font-size: 14px;}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-family: inherit;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus, 
+input[type="checkbox"]:focus, 
+input[type="radio"]:focus {
+    outline: none;
+    border-color: #00d4ff;
+    box-shadow: 0 0 8px rgba(0, 212, 255, 0.4);
+}
+
+.btn-submit {
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    width: 100%;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+.btn-submit:hover {
+    background-color: #218838;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(40, 167, 69, 0.3);
+}
+
+@keyframes fadeInLeft {
+    from { opacity: 0; transform: translateX(-30px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.footer {
+    background-color: #2c2c2c;
+    color: white;
+    padding: 30px 0 20px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+.footer__title {
+    display: block;
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.footer__text {
+    margin: 10px 0;
+    font-size: 18px;
+}
+
+.footer__link {
+    color: #00d4ff;
+    text-decoration: none;
+}
+
+.footer__link:hover {
+    text-decoration: underline;
+}
+
+.footer__bottom {
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid #444;
+}
+
+.footer__copy {
+    color: #888;
+    font-size: 14px;
+}
+
+@media (max-width: 900px) {
+    .product-card { width: calc(50% - 20px); }
+}
+@media (max-width: 768px) {
+    .layout-wrapper { flex-direction: column; }
+    .sidebar { width: 100%; box-sizing: border-box; }
+}
+@media (max-width: 550px) {
+    .product-card { width: 100%; margin-bottom: 10px; }
+    .header__nav { display: flex; flex-direction: column; gap: 10px; }
+}
+</style>
+</head>
+<body class="page">
+
+    <header class="header">
+        <div class="header__logo">TechZone</div>
+        <nav class="header__nav">
+            <a href="TechZone.html" class="header__link">Главная</a>
+            <a href="Catalog.html" class="header__link header__link--active">Каталог</a>
+            <a href="info.html" class="header__link">Оплата и доставка</a>
+            <a href="feedback.html" class="header__link">Обратная связь</a>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <h1 class="main-content__title">Каталог товаров</h1>
+
+        <div class="layout-wrapper">
+            
+            <aside class="sidebar">
+                <form class="filter-form" action="#" method="GET">
+                    <h3>Фильтр товаров</h3>
+                    
+                    <div class="filter-group">
+                        <label class="group-title">Категория</label>
+                        <label><input type="checkbox" name="category" value="smartphones"> Смартфоны</label>
+                        <label><input type="checkbox" name="category" value="consoles"> Игровые консоли</label>
+                        <label><input type="checkbox" name="category" value="peripherals"> Периферия</label>
+                        <label><input type="checkbox" name="category" value="components"> Комплектующие</label>
+                    </div>
+
+                    <div class="filter-group">
+                        <label class="group-title">Бренд</label>
+                        <label><input type="radio" name="brand" value="all" checked> Все</label>
+                        <label><input type="radio" name="brand" value="apple"> Apple</label>
+                        <label><input type="radio" name="brand" value="sony"> Sony</label>
+                        <label><input type="radio" name="brand" value="logitech"> Logitech</label>
+                        <label><input type="radio" name="brand" value="samsung"> Samsung</label>
+                    </div>
+
+                    <div class="filter-group">
+                        <label class="group-title" for="sort">Сортировка</label>
+                        <select id="sort" name="sort" class="form-control">
+                            <option value="popular">По популярности</option>
+                            <option value="price_asc">По возрастанию цены</option>
+                            <option value="price_desc">По убыванию цены</option>
+                            <option value="name_asc">По названию (А-Я)</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn-submit">Применить фильтр</button>
+                </form>
+            </aside>
+
+            <section class="catalog-area">
+                <div class="catalog-grid">
+                    <article class="product-card">
+                        <div class="product-card__image-wrapper">
+                            <img src="https://compday.ru/files/reg/886602.jpeg" alt="Товар" class="product-card__img">
+                        </div>
+                        <h3 class="product-card__name">Оперативная Память 32GB</h3>
+                        <p class="product-card__description">DDR5 высокоскоростная память для ПК</p>
+                        <div class="product-card__price">50 000 руб.</div>
+                        <button class="product-card__button">В корзину</button>
+                    </article>
+
+                    <article class="product-card">
+                        <div class="product-card__image-wrapper">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJ5VKMxF67DxYgZX1cQlWorTfWXhdPSMt24g&s" alt="Товар" class="product-card__img">
+                        </div>
+                        <h3 class="product-card__name"><a href="Products.html">Iphone 15 Pro</a></h3>
+                        <p class="product-card__description">256GB, Синий титан</p>
+                        <div class="product-card__price">90 000 руб.</div>
+                        <button class="product-card__button">В корзину</button>
+                    </article>
+
+                    <article class="product-card">
+                        <div class="product-card__image-wrapper">
+                            <img src="https://ipac31.ru/image/cache/data/product/konsoli/PS5/sony-playstation-5-slim-2023-700x700.jpg" alt="Товар" class="product-card__img">
+                        </div>
+                        <h3 class="product-card__name">Playstation 5 Slim</h3>
+                        <p class="product-card__description">Игровая консоль с дисководом</p>
+                        <div class="product-card__price">55 000 руб.</div>
+                        <button class="product-card__button">В корзину</button>
+                    </article>
+                    
+                    <article class="product-card">
+                        <div class="product-card__image-wrapper">
+                            <img src="https://sckhv.ru/upload/iblock/647/8o0i0vp5r5y9l4e01cxb86trf2kam6st.png" alt="Товар" class="product-card__img">
+                        </div>
+                        <h3 class="product-card__name">Playstation 4</h3>
+                        <p class="product-card__description">Игровая консоль</p>
+                        <div class="product-card__price">30 000 руб.</div>
+                        <button class="product-card__button">В корзину</button>
+                    </article>
+
+                    <article class="product-card">
+                        <div class="product-card__image-wrapper">
+                            <img src="https://s3.e2e4.ru/imgproxy/2253892" alt="Товар" class="product-card__img">
+                        </div>
+                        <h3 class="product-card__name">Logitech K120 </h3>
+                        <p class="product-card__description">Клавиатура</p>
+                        <div class="product-card__price">3 000 руб.</div>
+                        <button class="product-card__button">В корзину</button>
+                    </article>
+
+                    <article class="product-card">
+                        <div class="product-card__image-wrapper">
+                            <img src="https://impult.ru/preview/r/456x456/upload/iblock/fed/glhzssiogyfn3e1rmkzt4fi2m7h9nse8.jpg" alt="Товар" class="product-card__img">
+                        </div>
+                        <h3 class="product-card__name">Logitech G Pro Black</h3>
+                        <p class="product-card__description">Мышь игровая</p>
+                        <div class="product-card__price">5 000 руб.</div>
+                        <button class="product-card__button">В корзину</button>
+                    </article>
+                </div>
+            </section>
+        </div>
+    </main>
+
+<footer class="footer">
+    <div class="footer__content">
+        <b class="footer__title">Контакты:</b>
+        <p class="footer__text">Телефон: <a href="tel:+79990000000" class="footer__link">+7 (999) 000-00-00</a></p>
+        <p class="footer__text">Почта: <a href="mailto:pochta@gmail.com" class="footer__link">pochta@gmail.com</a></p>
+    </div>
+    <div class="footer__bottom">
+        <p class="footer__copy">© 2026 TechZone. Все права защищены.</p>
+    </div>
+</footer>
+</body>
+</html>
